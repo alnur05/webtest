@@ -10,8 +10,6 @@
         <h2 style=" font-size: 45px; text-align: center" >Let's go!</h2>
         <div style="color: cadetblue">
         <p class="btn btn-lg btn-primary" style="margin-left: 40%;display: inline-block; border-radius: 3px;" type="button" href="google.com"><a style="text-align: center;text-decoration: none;color:antiquewhite" href="auth.html">Auth</a></p>
-            <p class="or">Or</p>
-            <p class="btn btn-lg btn-primary" style="margin-left: 22%; display: inline-block; border-radius: 3px;" type="button" action="register.html"><a style="text-align: center; text-decoration: none;color:antiquewhite" href="register.html">Auth with google</a></p>
         </div>
     </div>
 </div>
