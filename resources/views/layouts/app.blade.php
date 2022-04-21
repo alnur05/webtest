@@ -51,6 +51,17 @@
                             </li>
                         </ul>
                     </div>
+
+                    <div>
+                        <ul>
+                            <li style="color:azure">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</li>
+                            <form action="/logout" method="POST">
+                                @csrf
+
+                                <button type="submit">{{ __('Log out') }}</button>
+                            </form>
+                        </ul>
+                    </div>
                 @endauth
             </div>
         </nav>
