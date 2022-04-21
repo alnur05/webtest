@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container1">
     <div class="signin-content">
         <div class="signin-image">
             <figure><img style="" src="images/signin-image.jpg" alt="sing up image"></figure>
