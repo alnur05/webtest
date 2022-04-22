@@ -19,7 +19,12 @@ return new class extends Migration
             $table->string('theme');
             $table->string('priority');
             $table->string('status');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('tester_id')->references('id')->on('users');
+            $table->date('deadline');
+            $table->string('stack');
             $table->timestamps();
+
         });
     }
 

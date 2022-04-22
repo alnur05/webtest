@@ -39,7 +39,10 @@ class TaskController extends Controller
             'code' => ['required', 'string', 'min:4', 'unique:tasks'],
             'theme' => ['required', 'string'],
             'status' => ['required'],
-            'priority' => ['required']
+            'priority' => ['required'],
+            'performer' => ['required', 'exists:users,id'],
+            'deadline' => ['required', 'date'],
+            'stack' => ['required'],
         ]);
 
         $task = Task::create([
@@ -47,6 +50,10 @@ class TaskController extends Controller
             'theme' => $request->input('theme'),
             'status' => $request->input('status'),
             'priority' => $request->input('priority'),
+            'user_id' => $request->input('performer'),
+            'tester_id' => ($request->input('tester')) ? $request->input('tester') : auth()->id(),
+            'deadline' => $request->input('deadline'),
+            'stack' => $request->input('stack'),
         ]);
 
         return redirect()->route('tasks.show', ['task' => $task]);
@@ -60,7 +67,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        return $task->code;
+        return view('tasks.show', ['task' => $task]);
     }
 
     /**

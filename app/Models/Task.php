@@ -12,4 +12,19 @@ class Task extends Model
 
     protected $guarded = [];
 
+    public function getRouteKeyName()
+    {
+        return 'code';
+    }
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function tester()
+    {
+        return $this->belongsTo(User::class, 'tester_id');
+    }
 }
