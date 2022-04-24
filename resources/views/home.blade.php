@@ -18,23 +18,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">{{__('UTB-505')}}</th>
-                        <td>{{__('Доработка сервиса')}}</td>
-                        <td>{{__('Высокий')}}</td>
-                        <td>{{__('В работе')}}</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                      </tr>
-                      <tr>
-                        <th scope="row">3</th>
-                        <td colspan="2">Larry the Bird</td>
-                        <td>@twitter</td>
-                      </tr>
+                        @foreach ($myTasks as $task)
+                        <tr>
+                            <th scope="row">
+                                <a href="{{ route('tasks.show', $task) }}">{{ $task->code }}</a>
+                            </th>
+                            <td>{{ $task->theme }}</td>
+                            <td>{{ $task->priority }}</td>
+                            <td>{{ $task->status }}</td>
+                        </tr>
+                        @endforeach
                     </tbody>
                   </table>
             </div>
@@ -74,6 +67,13 @@
                     </tbody>
                   </table>
             </div>
+        </div>
+    </div>
+    <div class="row mb-0">
+        <div class="col-md-6 offset-md-10">
+            <a class="btn btn-secondary btn-lg active"  href="{{ route('tasks.create', $task) }}">{{ 'Create task'}}
+
+            </a>
         </div>
     </div>
 </div>
