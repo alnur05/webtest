@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignId('tester_id')->references('id')->on('users');
             $table->date('deadline');
             $table->string('stack');
+            $table->string('text');
             $table->timestamps();
 
         });

@@ -7,14 +7,14 @@
             <div class="card">
                 <div class="card-header">{{ __('Create task') }}</div>
                 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                     <div class="card-body">
                         <form method="POST" action="{{ route('tasks.store') }}">
                             @csrf
@@ -127,8 +127,9 @@
                               {{--   </div> --}}
                             </div>
                             <div class="mb-3 mt-5">
-                                <label for="exampleFormControlTextarea1" class="form-label"></label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                <h3 class="nav justify-content-end">Task description</h1>
+                                <label for="text" class="form-label"></label>
+                                <textarea class="form-control" id="text" rows="3" name="text"></textarea>
                               </div>
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
