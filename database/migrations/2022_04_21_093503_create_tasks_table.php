@@ -15,15 +15,16 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('tester_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('stack_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->string('code')->unique();
-            $table->string('theme');
+            $table->string('title');
             $table->string('priority');
             $table->string('status');
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('tester_id')->references('id')->on('users');
             $table->date('deadline');
-            $table->string('stack');
-            $table->string('text');
+            $table->text('description');
             $table->timestamps();
 
         });

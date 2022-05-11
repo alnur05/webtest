@@ -64,7 +64,7 @@
     </div>
     <div class="row mb-0">
         <div class="col-md-6 offset-md-10">
-            <a class="btn btn-secondary btn-lg active"  href="{{ route('tasks.create', $task) }}">{{ 'Create task'}}
+            <a class="btn btn-secondary btn-lg active"  href="{{ route('tasks.create') }}">{{ 'Create task'}}
 
             </a>
         </div>

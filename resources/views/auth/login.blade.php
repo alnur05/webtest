@@ -6,8 +6,12 @@
         <div class="signin-image">
             <figure><img style="" src="images/signin-image.jpg" alt="sing up image"></figure>
         </div>
-
         <div class="signin-form">
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                @endif
             <h2 class="form-title">Sign up</h2>
             <form method="POST" action="/login" class="register-form" id="login-form">
                 @csrf
