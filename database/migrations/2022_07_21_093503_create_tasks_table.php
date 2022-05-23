@@ -18,15 +18,14 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tester_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('stack_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('status_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('type_id')->constrained()->cascadeOnDelete();
             $table->string('code')->unique();
             $table->string('title');
             $table->string('priority');
-            $table->string('status');
             $table->date('deadline');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->timestamps();
-
         });
     }
 

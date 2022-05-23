@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class HomeController extends Controller
 {
@@ -26,6 +27,8 @@ class HomeController extends Controller
     {
         $myTasks = Task::where('user_id', auth()->id())->get();
 
-        return view('home', ['myTasks' => $myTasks]);
+        return view('home', [
+            'myTasks' => $myTasks,
+        ]);
     }
 }

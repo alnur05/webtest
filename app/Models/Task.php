@@ -27,4 +27,21 @@ class Task extends Model
     {
         return $this->belongsTo(User::class, 'tester_id');
     }
+
+    public function type() {
+        return $this->belongsTo(Type::class);
+    }
+
+
+    public function status() {
+        return $this->belongsTo(Status::class);
+    }
+
+    public function stack() {
+        return $this->belongsTo(Stack::class);
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
+    }
 }

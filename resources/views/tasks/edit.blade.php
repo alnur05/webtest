@@ -16,8 +16,10 @@
                     </div>
                 @endif
                     <div class="card-body">
-                        <form method="POST" action="{{ route('tasks.store') }}">
+                        <form method="POST" action="{{ route('tasks.update', $task) }}">
                             @csrf
+                            @method('PUT')
+
                             <div class="row mb-3">
                                 <label for="type_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Type') }}</label>
 
@@ -26,7 +28,7 @@
                                         @foreach ($types as $type)
                                             <option
                                                 value="{{ $type->id }}"
-                                                {{ $type->id == old('type_id') ? 'selected' : '' }}
+                                                {{ $type->id == $task->type->id ? 'selected' : '' }}
                                             >{{ $type->name }}</option>
                                         @endforeach
                                     </select>
@@ -40,7 +42,7 @@
                             <div class="row mb-3">
                             <label for="code" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Code')}}</label>
                                 <div class="col-md-6">
-                                <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" required autocomplete="code" autofocus>
+                                <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ $task->code }}" required autocomplete="code" autofocus>
 
                                 @error('code')
                                 <span class="invalid-feedback" role="alert">
@@ -54,7 +56,7 @@
                                 <label for="title" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Title') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
+                                    <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ $task->title }}" required autocomplete="title" autofocus>
 
                                     @error('title')
                                         <span class="invalid-feedback" role="alert">
@@ -72,7 +74,7 @@
                                         @foreach ($statuses as $status)
                                             <option
                                                 value="{{ $status->id }}"
-                                                {{ $status->id == old('status_id') ? 'selected' : '' }}
+                                                {{ $status->id == $task->status->id ? 'selected' : '' }}
                                             >{{ $status->name }}</option>
                                         @endforeach
                                     </select>
@@ -88,7 +90,7 @@
                                 <label for="deadline" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Deadline') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="deadline" name="deadline" type="date" class="form-control" required autocomplete="deadline" value="{{ old('deadline') }}">
+                                    <input id="deadline" name="deadline" type="date" class="form-control" required autocomplete="deadline" value="{{ $task->deadline }}">
                                     @error('deadline')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message }}</strong>
@@ -100,12 +102,11 @@
                                 <label for="user_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Performer') }}</label>
 
                                 <div class="col-md-6">
-                                    {{-- <input id="user_id" name="user_id" type="text" class="form-control" required autocomplete="user_id" value="{{ old('user_id') }}"> --}}
                                     <select name="user_id" id="user_id" required>
                                         @foreach ($users as $user)
                                             <option
                                                 value="{{ $user->id }}"
-                                                {{ $user->id == old('user_id') ? 'selected' : '' }}
+                                                {{ $user->id == $task->user->id ? 'selected' : '' }}
                                             >{{ $user->first_name }} {{ $user->last_name }}</option>
                                         @endforeach
                                     </select>
@@ -124,7 +125,7 @@
                                         @foreach ($users as $user)
                                             <option
                                                 value="{{ $user->id }}"
-                                                {{ $user->id == old('tester_id') ? 'selected' : '' }}
+                                                {{ $user->id == $task->tester->id ? 'selected' : '' }}
                                             >{{ $user->first_name }} {{ $user->last_name }}</option>
                                         @endforeach
                                     </select>
@@ -136,14 +137,13 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="tester_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Stack') }}</label>
-                                <div class="col-md-6">
 
+                                <div class="col-md-6">
                                     <select name="stack_id" id="stack_id" required>
                                         @foreach ($stacks as $stack)
                                             <option
                                                 value="{{ $stack->id }}"
-                                                {{ $stack->id == old('stack_id') ? 'selected' : '' }}
+                                                {{ $stack->id == $task->stack->id ? 'selected' : '' }}
                                             >{{ $stack->name }}</option>
                                         @endforeach
                                     </select>
@@ -158,13 +158,12 @@
                             <div class="row mb-3">
                                 <div>
                                 {{-- <label for="priority" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Priority') }}</label> --}}
-                                <select class="form-select" aria-label="Default select example" id="priority" name="priority" type="text"  required autocomplete="priority" value="{{ old('priority') }}" style="width:20%; margin-left:63%">
+                                <select class="form-select" aria-label="Default select example" id="priority" name="priority" type="text"  required autocomplete="priority" value="{{ $task->priority }}" style="width:20%; margin-left:63%">
                                     <option value="Low">Low</option>
                                     <option value="Medium">Medium</option>
                                     <option value="High">High</option>
                                   </select>
                                  {{-- <div class="col-md-6">
-                                    <input id="priority" name="priority" type="text" class="form-control" required autocomplete="priority" value="{{ old('priority') }}"> --}}
                                    @error('priority')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{$message }}</strong>
@@ -176,12 +175,12 @@
                             <div class="mb-3 mt-5">
                                 <h3 class="nav justify-content-end">Task description</h1>
                                 <label for="text" class="form-label"></label>
-                                <textarea class="form-control" id="text" rows="3" name="text">{{ old('description') }}</textarea>
+                                <textarea class="form-control" id="text" rows="3" name="text">{{ $task->description }}</textarea>
                               </div>
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Create') }}
+                                        {{ __('Edit') }}
                                     </button>
                                 </div>
                             </div>
@@ -193,3 +192,4 @@
     </div>
 </div>
 @endsection
+

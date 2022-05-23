@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +28,12 @@ Auth::routes();
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
     Route::resource('tasks', TaskController::class);
+
+    Route::post('tasks/{task}/comments', [CommentController::class, 'store'])->name('comments.store');
+
+    Route::middleware(['can:admin'])->group(function () {
+        Route::resource('users', UserController::class);
+        // Route::resource('stacks', StackController::class);
+    });
 });

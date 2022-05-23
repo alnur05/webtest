@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\User;
+use App\Models\Status;
+use App\Models\Stack;
+use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TaskController extends Controller
 {
@@ -14,7 +19,9 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return view('tasks.index', [
+            'tasks' => Task::all(),
+        ]);
     }
 
     /**
@@ -24,7 +31,12 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('tasks.create');
+        return view('tasks.create', [
+            'users' => User::all(),
+            'types' => Type::all(),
+            'statuses' => Status::all(),
+            'stacks' => Stack::all()
+        ]);
     }
 
     /**
@@ -35,26 +47,7 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'code' => ['required', 'string', 'min:4', 'unique:tasks'],
-            'theme' => ['required', 'string'],
-            'status' => ['required'],
-            'priority' => ['required'],
-            'performer' => ['required', 'exists:users,id'],
-            'deadline' => ['required', 'date'],
-            'stack' => ['required'],
-        ]);
-
-        $task = Task::create([
-            'code' => $request->input('code'),
-            'theme' => $request->input('theme'),
-            'status' => $request->input('status'),
-            'priority' => $request->input('priority'),
-            'user_id' => $request->input('performer'),
-            'tester_id' => ($request->input('tester')) ? $request->input('tester') : auth()->id(),
-            'deadline' => $request->input('deadline'),
-            'stack' => $request->input('stack'),
-        ]);
+        $task = Task::create($this->validateTask());
 
         return redirect()->route('tasks.show', ['task' => $task]);
     }
@@ -78,7 +71,13 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('tasks.edit', [
+            'task' => $task,
+            'users' => User::all(),
+            'types' => Type::all(),
+            'statuses' => Status::all(),
+            'stacks' => Stack::all()
+        ]);
     }
 
     /**
@@ -90,7 +89,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task->update($this->validateTask($task));
+
+        return redirect()->route('tasks.show', ['task' => $task]);
     }
 
     /**
@@ -101,6 +102,25 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+       $task->delete();
+
+       return redirect()->route('tasks.index');
+    }
+
+    protected function validateTask(Task $task = null) {
+        $task ??= new Task();
+
+        return request()->validate([
+            'code' => ['required', 'string', 'min:4', Rule::unique('tasks', 'code')->ignore($task->code, 'code')],
+            'title' => ['required', 'string'],
+            'status_id' => ['required', Rule::exists('statuses', 'id')],
+            'priority' => ['required'],
+            'tester_id' => ['required', Rule::exists('users','id')],
+            'user_id' => ['required', Rule::exists('users','id')],
+            'deadline' => ['required', 'date'],
+            'stack_id' => ['required', Rule::exists('stacks', 'id')],
+            'description' => [],
+            'type_id' => ['required', Rule::exists('types', 'id')]
+        ]);
     }
 }

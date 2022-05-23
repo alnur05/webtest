@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
-use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
-use Illuminate\Support\Facades\Validator;
-class RoleController extends Controller
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,9 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $users = User::where('id', '<>', auth()->id())->get();
+
+        return view('users.index', compact('users'));
     }
 
     /**
@@ -25,15 +26,16 @@ class RoleController extends Controller
      */
     public function create()
     {
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreRoleRequest  $request
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRoleRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -41,22 +43,21 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Role $role)
+    public function show($id)
     {
         //
     }
 
-
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Role $role)
+    public function edit($id)
     {
         //
     }
@@ -64,11 +65,11 @@ class RoleController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateRoleRequest  $request
-     * @param  \App\Models\Role  $role
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -76,10 +77,10 @@ class RoleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Role  $role
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Role $role)
+    public function destroy($id)
     {
         //
     }
