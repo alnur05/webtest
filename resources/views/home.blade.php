@@ -4,16 +4,16 @@
     <div class="row align-items-start">
         <div class="card col m-4">
             <div class="card-header mt-2 text-center">
-               <h3> {{ __('Tasks created by you') }}</h3>
+               <h3> {{ __('Задачи созданные вами') }}</h3>
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">Code</th>
-                        <th scope="col">Theme</th>
-                        <th scope="col">Priory</th>
-                        <th scope="col">Status</th>
+                        <th scope="col">Код задачи</th>
+                        <th scope="col">Тема задачи</th>
+                        <th scope="col">Приоритет</th>
+                        <th scope="col">Статус</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -33,16 +33,16 @@
         </div>
         <div class="card col m-4">
             <div class="card-header mt-2 text-center">
-                <h3>{{ __('Tasks assigned to you') }}</h3>
+                <h3>{{ __('Задачи назначенные вам') }}</h3>
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Code</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Код задачи</th>
+                            <th scope="col">Тема задачи</th>
+                            <th scope="col">Тип</th>
+                            <th scope="col">Статус</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -63,16 +63,16 @@
     </div>
     <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Dropdown button
+          Таблицы
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><a class="dropdown-item" href="{{route('users.index')}}">Users Table</a></li>
-          <li><a class="dropdown-item" href="{{ route('tasks.index') }}">Tasks Table</a></li>
+          <li><a class="dropdown-item" href="{{route('users.index')}}">Адресная книга</a></li>
+          <li><a class="dropdown-item" href="{{ route('tasks.index') }}">Список задач</a></li>
         </ul>
       </div>
     <div class="row mb-0">
         <div class="col-md-6 offset-md-10">
-            <a class="btn btn-secondary btn-lg active"  href="{{ route('tasks.create') }}">{{ 'Create task'}}
+            <a class="btn btn-secondary btn-lg active"  href="{{ route('tasks.create') }}">{{ 'Создать задачу'}}
 
             </a>
         </div>
@@ -85,9 +85,9 @@
     const myChart = new Chart(ctx, {
     type: 'bar',
         data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август'],
         datasets: [{
-            label: '# of Votes',
+            label: '# Tasks statistic',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',

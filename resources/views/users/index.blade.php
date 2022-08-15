@@ -4,16 +4,16 @@
     <div class="row align-items-start">
         <div class="card col m-4">
             <div class="card-header mt-2 text-center">
-               <h3> {{ __('All users') }}</h3>
+               <h3> {{ __('Список сотрудников') }}</h3>
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
+                        <th scope="col">Имя</th>
+                        <th scope="col">Фамилия</th>
+                        <th scope="col">Эл. Почта</th>
+                        <th scope="col">Телефон</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -31,8 +31,8 @@
         </div>
     </div>
     <div class="row mb-0">
-        <div class="col-md-6 offset-md-10">
-            <a class="btn btn-secondary btn-lg active"  href="{{ route('register') }}">{{ 'Create user'}}
+        <div class="col-md-5 offset-md-9">
+            <a class="btn btn-secondary btn-lg active"  href="{{ route('register') }}">{{ 'Добавить пользователя'}}
 
             </a>
         </div>

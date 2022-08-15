@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create task') }}</div>
+                <div class="card-header">{{ __('Создание задачи') }}</div>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -19,8 +19,7 @@
                         <form method="POST" action="{{ route('tasks.store') }}">
                             @csrf
                             <div class="row mb-3">
-                                <label for="type_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Type') }}</label>
-
+                                <label for="type_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Тип')}}</label>
                                 <div class="col-md-6">
                                     <select name="type_id" id="type_id" required>
                                         @foreach ($types as $type)
@@ -38,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                            <label for="code" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Code')}}</label>
+                            <label for="code" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Код задачи')}}</label>
                                 <div class="col-md-6">
                                 <input id="code" type="text" class="form-control @error('code') is-invalid @enderror" name="code" value="{{ old('code') }}" required autocomplete="code" autofocus>
 
@@ -51,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="title" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Title') }}</label>
+                                <label for="title" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Тема задачи') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" required autocomplete="title" autofocus>
@@ -65,7 +64,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="status_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Status') }}</label>
+                                <label for="status_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Статус') }}</label>
 
                                 <div class="col-md-6">
                                     <select name="status_id" id="status_id" required>
@@ -85,7 +84,7 @@
                             </div>
 
                             <div class="row mb-3">
-                                <label for="deadline" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Deadline') }}</label>
+                                <label for="deadline" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Дедлайн') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="deadline" name="deadline" type="date" class="form-control" required autocomplete="deadline" value="{{ old('deadline') }}">
@@ -97,7 +96,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="user_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Performer') }}</label>
+                                <label for="user_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Исполнитель') }}</label>
 
                                 <div class="col-md-6">
                                     {{-- <input id="user_id" name="user_id" type="text" class="form-control" required autocomplete="user_id" value="{{ old('user_id') }}"> --}}
@@ -117,7 +116,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="tester_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Tester') }}</label>
+                                <label for="tester_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Тестировщик') }}</label>
 
                                 <div class="col-md-6">
                                     <select name="tester_id" id="tester_id" required>
@@ -136,7 +135,7 @@
                                 </div>
                             </div>
                             <div class="row mb-3">
-                                <label for="tester_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Stack') }}</label>
+                                <label for="tester_id" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Среда разработки') }}</label>
                                 <div class="col-md-6">
 
                                     <select name="stack_id" id="stack_id" required>
@@ -159,9 +158,9 @@
                                 <div>
                                 {{-- <label for="priority" class="col-md-4 col-form-label text-md-end mt-3" style="position: relative">{{ __('Priority') }}</label> --}}
                                 <select class="form-select" aria-label="Default select example" id="priority" name="priority" type="text"  required autocomplete="priority" value="{{ old('priority') }}" style="width:20%; margin-left:63%">
-                                    <option value="Low">Low</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="High">High</option>
+                                    <option value="Low">Низкий</option>
+                                    <option value="Medium">Средний</option>
+                                    <option value="High">Высокий</option>
                                   </select>
                                  {{-- <div class="col-md-6">
                                     <input id="priority" name="priority" type="text" class="form-control" required autocomplete="priority" value="{{ old('priority') }}"> --}}
@@ -174,14 +173,14 @@
                               {{--   </div> --}}
                             </div>
                             <div class="mb-3 mt-5">
-                                <h3 class="nav justify-content-end">Task description</h1>
+                                <h3 class="nav justify-content-end">Описание задачи</h1>
                                 <label for="text" class="form-label"></label>
                                 <textarea class="form-control" id="text" rows="3" name="text">{{ old('description') }}</textarea>
                               </div>
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button type="submit" class="btn btn-primary">
-                                        {{ __('Create') }}
+                                        {{ __('Создать задачу') }}
                                     </button>
                                 </div>
                             </div>

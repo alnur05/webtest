@@ -12,20 +12,20 @@
                         <li>{{ $error }}</li>
                     @endforeach
                 @endif
-            <h2 class="form-title">Sign up</h2>
+            <h2 class="form-title">Авторизация</h2>
             <form method="POST" action="/login" class="register-form" id="login-form">
                 @csrf
 
                 <div class="form-group">
                     <label for="username"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                    <input type="text" name="username" id="username" placeholder="{{ __('Username') }}"/>
+                    <input type="text" name="username" id="username" placeholder="{{ __('Имя пользователя') }}"/>
                 </div>
                 <div class="form-group">
                     <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                    <input type="password" name="password" id="password" placeholder="Password"/>
+                    <input type="password" name="password" id="password" placeholder="Пароль"/>
                 </div>
                 <div class="form-group form-button">
-                    <input type="submit" name="signin" id="signin" class="form-submit" value="{{ __('Log in') }}"/>
+                    <input type="submit" name="signin" id="signin" class="form-submit" value="{{ __('Вход') }}"/>
                 </div>
             </form>
             {{-- <div class="social-login">

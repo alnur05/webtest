@@ -47,9 +47,11 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'role_id' => ['required','string'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'username' => ['required', 'string', 'min:8', 'max:255', 'unique:users'],
@@ -58,7 +60,6 @@ class RegisterController extends Controller
             'phone' =>['required', 'string', 'max:255'],
         ]);
     }
-
     /**
      * Create a new user instance after a valid registration.
      *
@@ -68,7 +69,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'role_id' => 1,
+            'role_id' => $data['role_id'],
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'username' => $data['username'],
@@ -76,14 +77,13 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'phone' => $data['phone']
         ]);
-        return view('register');
     }
 
     public function register()
     {
         $this->validator(request()->all())->validate();
 
-        $this->register(request()->all());
+        $this->create(request()->all());
 
         return to_route('home');
     }

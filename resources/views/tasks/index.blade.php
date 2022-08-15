@@ -5,17 +5,17 @@
     <div class="row align-items-start">
         <div class="card col m-4">
             <div class="card-header mt-2 text-center">
-               <h3> {{ __('All tasks') }}</h3>
+               <h3> {{ __('Список задач') }}</h3>
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">Code</th>
-                        <th scope="col">Theme</th>
-                        <th scope="col">Priory</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">User</th>
+                        <th scope="col">Код задачи</th>
+                        <th scope="col">Тема задачи</th>
+                        <th scope="col">Приорите</th>
+                        <th scope="col">Статус</th>
+                        <th scope="col">Сотрудник</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -43,11 +43,10 @@
     const myChart = new Chart(ctx, {
     type: 'bar',
         data: {
-        labels: [{{ $task->user->first_name}}, 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        labels: ['Maxie Romaguera', 'Theodare Maggio', 'Edwina Kihn', 'Alnur Tynyshbek', 'Oren Kovacek', 'Norval Kris'],
         datasets: [{
             label: '# of Votes',
-            data: [{{ auth()->user()->taskStatusCount('done') }}, 19, 3, 5, 2, 3],
-            //data: [20, 19, 3, 5, 2, 3],
+            data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
